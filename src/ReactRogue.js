@@ -1,21 +1,27 @@
 import React, {useEffect, useRef, useState} from 'react'
 import InputManager from './InputManager';
+import Player from './Player';
+import World from './World';
+
 
 const ReactRogue = ({height, width, tilesize}) => {
     const canvasRef = useRef(null);
-    const [player,setPlayer] = useState({x:50, y: 100})
+    const [player,setPlayer] = useState(new Player(1, 2, tilesize))
+    const [world, setWorld] = useState(new World(width, height, tilesize))
 
-
-    let newPlayer = { ...player};
+    let newPlayer = new Player();
     let inputManager = new InputManager();
+
     const handleInput = (action, data) => {
         console.log(`handle input: ${action}: ${JSON.stringify(data)}`)
-        console.log("Before", newPlayer)
-        newPlayer.x += data.x;
-        newPlayer.y += data.y
+        Object.assign(newPlayer, player)
+        
+        newPlayer.move(data.x, data.y);
         console.log(newPlayer)
         setPlayer(newPlayer);
     }
+
+
     useEffect(() =>{
         console.log("Bind input");
         inputManager.bindKeys();
@@ -26,12 +32,12 @@ const ReactRogue = ({height, width, tilesize}) => {
         }
     })
 
-    //The small square
+    //Draw The small square
     useEffect(()=>{
         const ctx = canvasRef.current.getContext('2d');
         ctx.clearRect(0, 0, width*tilesize, height*tilesize);
-        ctx.fillStyle= '#259'; //Color and style
-        ctx.fillRect(player.x, player.y, 15, 15) // position and size
+        world.draw(ctx)
+        player.draw(ctx)
     })
   return (
     

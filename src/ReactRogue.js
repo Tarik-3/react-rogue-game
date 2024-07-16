@@ -1,6 +1,5 @@
 import React, {useEffect, useRef, useState} from 'react'
 import InputManager from './InputManager';
-import Player from './Player';
 import World from './World';
 import Spawner from './Spawner';
 

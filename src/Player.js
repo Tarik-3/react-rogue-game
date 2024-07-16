@@ -7,11 +7,18 @@ class Player {
 
     move(dx, dy) {
         this.x += dx;
-        if(this.y===0 && dy===-1) this.y =10;
-        if(this.y===9 && dy===+1) this.y =0;
-        if(this.x===20 && dx===+1) this.x =0;
-        if(this.x===0 && dx===-1) this.x =19;
+        // if(this.y===0 && dy===-1) this.y =10;
+        // if(this.y===9 && dy===+1) this.y =0;
+        // if(this.x===20 && dx===+1) this.x =0;
+        // if(this.x===0 && dx===-1) this.x =19;
         this.y += dy;
+    } 
+
+    
+    copyPlayer() {
+        let newPlayer = new Player();
+        Object.assign(newPlayer, this);
+        return newPlayer;
     }
 
     draw(context) {

@@ -1,8 +1,10 @@
-class Player {
-    constructor(x, y, size) {
-        this.x = x;
-        this.y = y;
-        this.size = size;
+import Entity from "./Entity"
+class Player extends Entity{
+
+    attributes = {
+        name: "Player",
+        ascii: "@",
+        health: 10
     }
 
     move(dx, dy) {
@@ -21,12 +23,12 @@ class Player {
         return newPlayer;
     }
 
-    draw(context) {
-        context.fillStyle = "#f00"
-        context.textBaseline = 'hanging';
-        context.font = '16px Helvetica';
-        context.fillText('#', this.x * this.size, this.y * this.size);
-    }
+    // draw(context) {
+    //     context.fillStyle = "#f00"
+    //     context.textBaseline = 'hanging';
+    //     context.font = '16px Helvetica';
+    //     context.fillText('@', this.x * this.size, this.y * this.size);
+    // }
 
 
 }

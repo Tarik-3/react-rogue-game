@@ -2,6 +2,7 @@ import React, {useEffect, useRef, useState} from 'react'
 import InputManager from './InputManager';
 import Player from './Player';
 import World from './World';
+import Spawner from './Spawner';
 
 
 const ReactRogue = ({height, width, tilesize}) => {
@@ -29,6 +30,8 @@ const ReactRogue = ({height, width, tilesize}) => {
         newWorld.createCellularMap();
         newWorld.moveToSpace(world.player  )
         //console.log(newWorld)
+        let spawner = new Spawner(newWorld);
+        spawner.spawnLoot(10);
         setWorld(newWorld); 
     }, [])
 
@@ -55,7 +58,7 @@ const ReactRogue = ({height, width, tilesize}) => {
         ref={canvasRef}
         height={height* tilesize}
         width={width * tilesize}
-        style={{border: '2px solid red'}}
+        style={{border: '2px solid black', background: 'DimGray'}}
       ></canvas>
   )
 }

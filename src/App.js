@@ -3,7 +3,7 @@ import ReactRogue from './ReactRogue';
 const App = () => {
   return (
     <div className="App">
-      <ReactRogue width={20} height={10} tilesize={30}/>
+      <ReactRogue width={50} height={40} tilesize={15}/>
 
     </div>
   );
